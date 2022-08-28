@@ -191,7 +191,7 @@ def function(outputFolder, preprocessFolder, lsOption, slopeAngle, soilOption, s
         if not progress.codeSuccessfullyRun(codeBlock, outputFolder, rerun):
 
             log.info("Clipping inputs")
-            '''
+            
             arcpy.Clip_management(rainResample, "#", rainClip, studyMask, clipping_geometry="ClippingGeometry")
 
             # Delete resampled R-factor
@@ -214,7 +214,7 @@ def function(outputFolder, preprocessFolder, lsOption, slopeAngle, soilOption, s
 
                 # Delete resampled support data
                 arcpy.Delete_management(supportResample)
-            '''
+            
             log.info("Inputs clipped")
 
             progress.logProgress(codeBlock, outputFolder)
@@ -230,7 +230,6 @@ def function(outputFolder, preprocessFolder, lsOption, slopeAngle, soilOption, s
                     inputs.append(data)
 
             for data in inputs:
-                log.info('DEBUG: now checking: ' + str(data))
                 dataMask = common.extractRasterMask(data)
                 common.checkCoverage(dataMask, studyMask, data)
                 del dataMask
