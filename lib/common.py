@@ -580,7 +580,7 @@ def writeXML(XMLfile, nodeNameValueList):
 
         try:
             found = False
-            for child in parent.getchildren():
+            for child in list(parent):
                 if child.tag == name:
                     found = True
             if not found:
@@ -609,7 +609,7 @@ def writeXML(XMLfile, nodeNameValueList):
 
         try:
             elem = None
-            for child in parent.getchildren():
+            for child in list(parent):
                 if child.tag == name:
                     elem = child
             return elem

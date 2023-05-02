@@ -14,7 +14,17 @@ refresh_modules([log, common])
 ### Global timing variables ###
 
 times = []
-startTime = time.clock()
+
+# Get Arc version
+ArcVersion = arcpy.GetInstallInfo()['Version']
+verslice = ArcVersion[:4]
+
+if str(verslice[0:2]) in ['2.', '3.']: # for ArcGIS Pro since the version numbering is different
+    startTime = time.perf_counter()
+
+else:
+    startTime = time.clock()
+
 times.append(startTime)
 
 def initProgress(folder, rerun):
@@ -91,7 +101,13 @@ def logProgress(codeBlockName, folder):
 
         # Calculate and update timings
         currentTimeFormatted = time.asctime(time.localtime(time.time()))
-        currentTime = time.clock()
+
+        if str(verslice[0:2]) in ['2.', '3.']: # for ArcGIS Pro since the version numbering is different
+            currentTime = time.perf_counter()
+
+        else:
+            currentTime = time.clock()
+
         prevElapsed = round(currentTime - times[-1], 1)
         startElapsed = round(currentTime - startTime, 1)
 

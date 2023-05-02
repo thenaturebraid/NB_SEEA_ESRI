@@ -89,6 +89,5 @@ class Toolbox(object):
         self.tools = [CreateDataAggregationGrid, AggregateData,
                       RUSLE, RUSLEAccounts, RUSLEAccScen,
                       LandAccounts,
-                      PAspeciesRichness,
                       ChangeUserSettings, PreprocessDEM,
                       StatsZonal, StatsExtent]
